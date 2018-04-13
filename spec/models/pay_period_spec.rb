@@ -11,4 +11,8 @@ RSpec.describe PayPeriod, type: :model do
 			expect(dateless.valid?).to be false
 		end
 	end
+
+	describe 'Associations' do
+		it { should have_many(:timesheets) }
+	end
 end

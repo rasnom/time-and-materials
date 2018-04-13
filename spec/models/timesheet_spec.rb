@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Timesheet, type: :model do
   
 	describe 'Creation' do
-		it 'is valid with a pay_period and employee' do
+		it 'is valid with a P_period and employee' do
 			new_sheet = FactoryBot.create(:timesheet)
 			expect(new_sheet.valid?).to be true
 		end
@@ -31,6 +31,7 @@ RSpec.describe Timesheet, type: :model do
 
 	describe 'Associations' do
 		it { should belong_to(:employee) }
+		it { should belong_to(:pay_period) }
 	end
 
 end

@@ -12,5 +12,6 @@ FactoryBot.define do
 		pay_period_id 7
 
 		employee
+		pay_period
 	end
 end
