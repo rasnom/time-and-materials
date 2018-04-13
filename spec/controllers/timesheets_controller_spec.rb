@@ -7,6 +7,12 @@ RSpec.describe TimesheetsController, type: :controller do
 			get :index
 			expect(response).to render_template('index')
 		end
+
+		it 'assigns @timesheets' do
+			timesheet_list = FactoryBot.create_list(:timesheet, 6)
+			get :index
+			expect(assigns(:timesheets)).to eq timesheet_list
+		end
 	end
 
 end

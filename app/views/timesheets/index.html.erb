@@ -1,1 +1,9 @@
 <h1> Timesheets </h1>
+
+<div class="timesheets_list">
+	<% @timesheets.each do |timesheet| %>
+		<div class="timesheet_summary">
+			<%= timesheet.employee.full_name + "  " + timesheet.pay_period.end_date.to_s %>
+		</div>
+	<% end %>
+</div>
