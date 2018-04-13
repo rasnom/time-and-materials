@@ -30,7 +30,7 @@ RSpec.describe Timesheet, type: :model do
 	end
 
 	describe 'Associations' do
-		xit { should belong_to(:employee) }
+		it { should belong_to(:employee) }
 	end
 
 end

@@ -11,4 +11,8 @@ RSpec.describe Employee, type: :model do
 			expect(new_employee.valid?).to be false
 		end
 	end
+
+	describe 'Assocations' do
+		it { should have_many(:timesheets) }
+	end
 end
