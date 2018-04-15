@@ -15,4 +15,17 @@ RSpec.describe TimesheetsController, type: :controller do
 		end
 	end
 
+	describe 'GET show' do
+		let!(:timesheet) { FactoryBot.create(:timesheet) }
+		before(:each) { get :show, params: { id: timesheet.id } }
+	
+		it 'renders the timesheets index' do
+			expect(response).to render_template('show')
+		end
+
+		it 'assigns @timesheet' do
+			expect(assigns(:timesheet)).to eq timesheet
+		end
+	end
+
 end

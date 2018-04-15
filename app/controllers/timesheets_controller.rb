@@ -4,4 +4,8 @@ class TimesheetsController < ApplicationController
 		@timesheets = Timesheet.all
 	end
 
+	def show
+		@timesheet = Timesheet.find(params[:id])
+	end
+
 end

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
-  resources :timesheets, only: [:index]  
+  resources :timesheets, only: [:index, :show]
 
 end

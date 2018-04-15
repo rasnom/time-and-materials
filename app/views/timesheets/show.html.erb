@@ -1,0 +1,16 @@
+<h1> Timesheet Details </h1>
+
+
+
+<div>
+	<div>
+		Employee: <%= @timesheet.employee.full_name %>
+	</div>
+	<div>
+		Pay Period: <%= @timesheet.pay_period.end_date %>
+	</div>
+	<div>
+		Total hours: <%= @timesheet.total_hours %>
+	</div>
+</div>
+
