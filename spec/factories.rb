@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :project do
+  	name "44 Ramble Rd"  
+  end
+
   factory :work_entry do
   	timesheet_id 5555
   	start_time 'May 3, 1999'
