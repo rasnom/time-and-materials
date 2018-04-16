@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413050457) do
+ActiveRecord::Schema.define(version: 20180416024845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20180413050457) do
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_timesheets_on_employee_id"
     t.index ["pay_period_id"], name: "index_timesheets_on_pay_period_id"
+  end
+
+  create_table "work_entries", force: :cascade do |t|
+    t.bigint "timesheet_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["timesheet_id"], name: "index_work_entries_on_timesheet_id"
   end
 
 end

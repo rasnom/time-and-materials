@@ -32,6 +32,7 @@ RSpec.describe Timesheet, type: :model do
 	describe 'Associations' do
 		it { should belong_to(:employee) }
 		it { should belong_to(:pay_period) }
+		it { should have_many(:work_entries) }
 	end
 
 end

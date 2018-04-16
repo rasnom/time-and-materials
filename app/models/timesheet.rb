@@ -5,4 +5,5 @@ class Timesheet < ApplicationRecord
 
 	belongs_to :employee
 	belongs_to :pay_period
+	has_many :work_entries
 end
