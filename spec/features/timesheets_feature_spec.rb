@@ -39,7 +39,9 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			some_work_entry = timesheet.work_entries.first
 			details = page.find("div#work_entry-#{some_work_entry.id}").text
 
+			expect(details).to include some_work_entry.project.name
 			expect(details).to include some_work_entry.start_time.to_s
+			expect(details).to include some_work_entry.end_time.to_s
 			expect(page.all("div.work_entry").count).to eq timesheet.work_entries.length
 		end
 	end
@@ -57,7 +59,8 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			let!(:full_timesheet) { FactoryBot.create(:timesheet_with_entries) }
 
 			it 'includes the related work entry fields in the form' do
-				expect(page).to have_css 'form div.work_entry input[name="start_time"]'
+				expect(page).to have_css 'form div.work_entry input[name="project"]'
+				expect(page).to have_css 'form div.work_entry input[name="start_time"]'	
 				expect(page).to have_css 'form div.work_entry input[name="end_time"]'
 			end
 		end

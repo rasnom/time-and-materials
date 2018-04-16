@@ -18,6 +18,7 @@
 	<div class='work_entries_area'>
 		<% @timesheet.work_entries.each do |work_entry| %>
 			<div class='work_entry' id='work_entry-<%= work_entry.id %>'>
+				Project: <%= work_entry.project.name %>
 				Start: <%= work_entry.start_time.to_s %>
 				End: <%= work_entry.end_time.to_s %>
 			</div>
