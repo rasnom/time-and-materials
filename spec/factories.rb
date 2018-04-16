@@ -5,10 +5,12 @@ FactoryBot.define do
 
   factory :work_entry do
   	timesheet_id 5555
+  	project_id 4
   	start_time 'May 3, 1999'
   	end_time 'May 1, 1977'
 
   	timesheet  
+  	project
   end
 
   factory :pay_period do

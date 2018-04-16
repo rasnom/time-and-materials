@@ -17,6 +17,11 @@ RSpec.describe WorkEntry, type: :model do
 			expect(endless.valid?).to be false
 		end
 
+		it 'is not valid without a project' do
+			projectless = FactoryBot.build(:work_entry, project_id: nil)
+			expect(projectless.valid?).to be false
+		end
+
 		it 'is valid with valid inputs' do
 			expect(FactoryBot.create(:work_entry).valid?).to be true
 		end
@@ -24,5 +29,7 @@ RSpec.describe WorkEntry, type: :model do
 
 	describe 'associations' do
 		it { should belong_to(:timesheet) }
+		it { should belong_to(:project) }
 	end
 end
+ 

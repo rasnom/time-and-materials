@@ -11,4 +11,8 @@ RSpec.describe Project, type: :model do
 			expect(FactoryBot.create(:project).valid?).to be true
 		end
 	end
+
+	describe 'associations' do
+		it { should have_many(:work_entries) }
+	end
 end
