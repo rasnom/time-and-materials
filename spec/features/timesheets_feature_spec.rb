@@ -39,9 +39,27 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			some_work_entry = timesheet.work_entries.first
 			details = page.find("div#work_entry-#{some_work_entry.id}").text
 
-			p details
 			expect(details).to include some_work_entry.start_time.to_s
 			expect(page.all("div.work_entry").count).to eq timesheet.work_entries.length
+		end
+	end
+
+	describe 'edit' do
+		let!(:timesheet) { FactoryBot.create(:timesheet) }
+		before(:each) { visit "/timesheets/#{timesheet.id}/edit" }
+
+		it 'displays a form with the timesheet fields' do
+			expect(page).to have_css 'form input[name="pay_period"]'
+			expect(page).to have_css 'form input[name="employee"]'	
+		end
+
+		describe 'form with work entries' do
+			let!(:full_timesheet) { FactoryBot.create(:timesheet_with_entries) }
+
+			it 'includes the related work entry fields in the form' do
+				expect(page).to have_css 'form div.work_entry input[name="start_time"]'
+				expect(page).to have_css 'form div.work_entry input[name="end_time"]'
+			end
 		end
 	end
 end

@@ -19,8 +19,21 @@ RSpec.describe TimesheetsController, type: :controller do
 		let!(:timesheet) { FactoryBot.create(:timesheet) }
 		before(:each) { get :show, params: { id: timesheet.id } }
 	
-		it 'renders the timesheets index' do
+		it 'renders the timesheets show view' do
 			expect(response).to render_template('show')
+		end
+
+		it 'assigns @timesheet' do
+			expect(assigns(:timesheet)).to eq timesheet
+		end
+	end
+
+	describe 'GET edit' do
+		let!(:timesheet) { FactoryBot.create(:timesheet) }
+		before(:each) { get :edit, params: { id: timesheet.id} }
+
+		it 'renders the timesheets edit view' do
+			expect(response).to render_template('edit')
 		end
 
 		it 'assigns @timesheet' do

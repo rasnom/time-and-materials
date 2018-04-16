@@ -8,4 +8,8 @@ class TimesheetsController < ApplicationController
 		@timesheet = Timesheet.find(params[:id])
 	end
 
+	def edit
+		@timesheet = Timesheet.find(params[:id])
+	end
+
 end
