@@ -13,6 +13,12 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			expect(page).to have_content timesheet_list.first.employee.full_name
 			expect(page).to have_content timesheet_list.last.employee.full_name
 		end
+
+		it 'links to the individual timesheets' do
+			some_timesheet = timesheet_list[2]
+			page.find("div#timesheet-#{some_timesheet.id} a").click
+	 		expect(current_path).to eq(timesheet_path(some_timesheet))
+		end
 	end
 
 	describe 'show' do
