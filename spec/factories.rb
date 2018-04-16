@@ -21,5 +21,15 @@ FactoryBot.define do
 
 		employee
 		pay_period
+
+		factory(:timesheet_with_entries) do
+			transient do
+				entries_count 5
+			end
+
+			after(:create) do |timesheet, evaluator|
+				create_list(:work_entry, evaluator.entries_count, timesheet: timesheet)
+			end
+		end
 	end
 end

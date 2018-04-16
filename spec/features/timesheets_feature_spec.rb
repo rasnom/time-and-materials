@@ -22,7 +22,7 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 	end
 
 	describe 'show' do
-		let!(:timesheet) { FactoryBot.create(:timesheet) }
+		let!(:timesheet) { FactoryBot.create(:timesheet_with_entries) }
 		before(:each) { visit "/timesheets/#{timesheet.id}" }
 
 		it 'displays the details of the timesheet' do
@@ -33,6 +33,15 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 		it 'displays some details of the models associated to the timesheet' do
 			expect(page).to have_content timesheet.employee.full_name
 			expect(page).to have_content timesheet.pay_period.end_date
+		end
+
+		it 'displays the work entries that belong to the timesheet' do
+			some_work_entry = timesheet.work_entries.first
+			details = page.find("div#work_entry-#{some_work_entry.id}").text
+
+			p details
+			expect(details).to include some_work_entry.start_time.to_s
+			expect(page.all("div.work_entry").count).to eq timesheet.work_entries.length
 		end
 	end
 end
