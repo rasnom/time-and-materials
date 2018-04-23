@@ -14,20 +14,25 @@ PayPeriod.delete_all
 acody = Employee.create(full_name: "Angstrom Cody")
 bbrody = Employee.create(full_name: "Bob Brody")
 sometime = PayPeriod.create(end_date: "February 6, 1999")
+stuff = Project.create(name: "stuff")
 blank_sheet = Timesheet.create(employee: acody, pay_period: sometime)
 full_sheet = Timesheet.create(employee: bbrody, pay_period: sometime)
+
 WorkEntry.create(
 	timesheet: full_sheet, 
+	project: stuff,
 	start_time: '8:05am May 4, 2018', 
 	end_time: '12:22pm May 4, 2018'
 )
 WorkEntry.create(
-	timesheet: full_sheet, 
+	timesheet: full_sheet,
+	project: stuff,
 	start_time: '2:00pm May 4, 2018', 
 	end_time: '5:55pm May 4, 2018'
 )
 WorkEntry.create(
-	timesheet: full_sheet, 
+	timesheet: full_sheet,
+	project: stuff, 
 	start_time: '8:00am May 6, 2018', 
 	end_time: '6pm May 6, 2018'
 )

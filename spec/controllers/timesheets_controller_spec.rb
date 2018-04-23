@@ -40,5 +40,4 @@ RSpec.describe TimesheetsController, type: :controller do
 			expect(assigns(:timesheet)).to eq timesheet
 		end
 	end
-
 end

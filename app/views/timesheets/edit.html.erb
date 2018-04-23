@@ -1,17 +1,20 @@
 <h1> Edit Timesheet </h1>
 
-<form>
-	<div>
-		Employee: <input name="employee" />
-	</div>
-	<div>
-		Pay Period: <input name="pay_period" />
-	</div>
+<div class='static_details'>
+	<div class='employee'> <%= @timesheet.employee.full_name %> </div>
+	<div class='pay_period'> <%= @timesheet.pay_period.end_date %> </div>
+</div>
 
-	<div class='work_entry'>
-			<input name="project" />
-			<input name="start_time" />
-			<input name="end_time" />
-	</div>
+<%= form_with model: @timesheet do |form| %>
+	
+	<% @timesheet.work_entries.each do |work_entry| %>
 
-</form>
+		<div class="work_entry">
+			<%= form.text_field :project %>
+			<%= form.text_field :start_time %>
+			<%= form.text_field :end_time %>
+		</div>
+
+	<% end %>
+
+<% end %>
