@@ -63,7 +63,7 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 		describe 'form with work entries' do
 			let!(:full_timesheet) { FactoryBot.create(:timesheet_with_entries) }
 
-			xit 'includes the related work entry fields in the form' do
+			it 'includes the related work entry fields in the form' do
 				expect(page).to have_css 'div.work_entry input[name="project"]'
 				expect(page).to have_css 'div.work_entry input[name="start_time"]'	
 				expect(page).to have_css 'div.work_entry input[name="end_time"]'

@@ -19,20 +19,20 @@ blank_sheet = Timesheet.create(employee: acody, pay_period: sometime)
 full_sheet = Timesheet.create(employee: bbrody, pay_period: sometime)
 
 WorkEntry.create(
-	timesheet: full_sheet, 
-	project: stuff,
-	start_time: '8:05am May 4, 2018', 
-	end_time: '12:22pm May 4, 2018'
+	timesheet_id: full_sheet.id, 
+	project_id: stuff.id,
+	start_time: '1/1/2018 8:15', 
+	end_time: '1/1/2018 8:40'
 )
 WorkEntry.create(
-	timesheet: full_sheet,
-	project: stuff,
-	start_time: '2:00pm May 4, 2018', 
-	end_time: '5:55pm May 4, 2018'
+	timesheet_id: full_sheet.id,
+	project_id: stuff.id,
+	start_time: '2/5/2018 16:00', 
+	end_time: '2/5/2018 18:00'
 )
 WorkEntry.create(
-	timesheet: full_sheet,
-	project: stuff, 
-	start_time: '8:00am May 6, 2018', 
-	end_time: '6pm May 6, 2018'
+	timesheet_id: full_sheet.id,
+	project_id: stuff.id, 
+	start_time: '2/6/2018 8:00', 
+	end_time: '2/6/2018 12:30'
 )
