@@ -47,7 +47,7 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 	end
 
 	describe 'edit' do
-		let!(:timesheet) { FactoryBot.create(:timesheet) }
+		let!(:timesheet) { FactoryBot.create(:timesheet_with_entries) }
 		before(:each) { visit "/timesheets/#{timesheet.id}/edit" }
 
 		it 'displays the immutable timesheet details' do
@@ -55,19 +55,18 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			expect(page).to have_content timesheet.pay_period.end_date
 		end
 
+		it 'includes the related work entry fields in the form' do
+			work_entry_id = timesheet.work_entries.first.id
+			section = page.find("div#work_entry_#{work_entry_id}")
+			expect(section).to have_css 'input[name="timesheet[project]"]'
+			expect(section).to have_css 'input[name="timesheet[start_time]"]'	
+			expect(section).to have_css 'input[name="timesheet[end_time]"]'
+		end
+
 		xit 'prepopulates the timesheet form fields with existing data' do
 			expect(page.find('input[name="employee"]').text).to eq timesheet.employee.full_name
 			expect(page.find('input[name="pay_period"]').text).to eq timesheet.pay_period.end_date.to_s
 		end
 
-		describe 'form with work entries' do
-			let!(:full_timesheet) { FactoryBot.create(:timesheet_with_entries) }
-
-			it 'includes the related work entry fields in the form' do
-				expect(page).to have_css 'div.work_entry input[name="project"]'
-				expect(page).to have_css 'div.work_entry input[name="start_time"]'	
-				expect(page).to have_css 'div.work_entry input[name="end_time"]'
-			end
-		end
 	end
 end

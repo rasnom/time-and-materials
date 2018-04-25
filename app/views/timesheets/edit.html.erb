@@ -9,7 +9,7 @@
 	
 	<% @timesheet.work_entries.each do |work_entry| %>
 
-		<div class="work_entry">
+		<div class="work_entry" id="work_entry_<%=work_entry.id%>">
 			<%= form.text_field :project %>
 			<%= form.text_field :start_time %>
 			<%= form.text_field :end_time %>
