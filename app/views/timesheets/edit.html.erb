@@ -7,14 +7,12 @@
 
 <%= form_with model: @timesheet do |form| %>
 	
-	<% @timesheet.work_entries.each do |work_entry| %>
-
-		<div class="work_entry" id="work_entry_<%=work_entry.id%>">
-			<%= form.text_field :project %>
-			<%= form.text_field :start_time %>
-			<%= form.text_field :end_time %>
-		</div>
-
+	<%= form.fields_for :work_entries do |work_entry_fields| %>
+		<p class="work_entry_fields">
+			Project: <%= work_entry_fields.text_field :project %>
+			Start Time: <%= work_entry_fields.text_field :start_time %>
+			End Time: <%= work_entry_fields.text_field :end_time %>
+		</p>
 	<% end %>
 
 <% end %>

@@ -6,4 +6,6 @@ class Timesheet < ApplicationRecord
 	belongs_to :employee
 	belongs_to :pay_period
 	has_many :work_entries
+
+	accepts_nested_attributes_for :work_entries
 end

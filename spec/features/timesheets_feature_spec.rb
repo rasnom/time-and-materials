@@ -55,18 +55,19 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			expect(page).to have_content timesheet.pay_period.end_date
 		end
 
-		it 'includes the related work entry fields in the form' do
-			work_entry_id = timesheet.work_entries.first.id
-			section = page.find("div#work_entry_#{work_entry_id}")
-			expect(section).to have_css 'input[name="timesheet[project]"]'
-			expect(section).to have_css 'input[name="timesheet[start_time]"]'	
-			expect(section).to have_css 'input[name="timesheet[end_time]"]'
-		end
+		describe 'work entries' do
+			it 'includes an input for each of the associated work entries' do
+				expect(page).to have_css('p.work_entry_fields', count: timesheet.work_entries.count)
+			end
 
-		xit 'prepopulates the timesheet form fields with existing data' do
-			expect(page.find('input[name="employee"]').text).to eq timesheet.employee.full_name
-			expect(page.find('input[name="pay_period"]').text).to eq timesheet.pay_period.end_date.to_s
-		end
+			it 'includes the related work entry fields in the form' do
+				expect(page).to have_css "input#timesheet_work_entries_attributes_0_project"
+				expect(page).to have_css "input#timesheet_work_entries_attributes_0_start_time"
+				expect(page).to have_css "input#timesheet_work_entries_attributes_0_end_time"
+			end
 
+			xit 'prepopulates the timesheet work entry fields with existing data' do
+			end
+		end
 	end
 end
