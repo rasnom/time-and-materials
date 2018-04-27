@@ -5,12 +5,11 @@ FactoryBot.define do
 
   factory :work_entry do
   	timesheet_id 5555
-  	project_id 4
   	start_time 'May 3, 1999'
   	end_time 'May 1, 1977'
 
   	timesheet  
-  	project
+  	project Project.first_or_create(name: "99 Markov")
   end
 
   factory :pay_period do
@@ -30,7 +29,7 @@ FactoryBot.define do
 
 		factory(:timesheet_with_entries) do
 			transient do
-				entries_count 5
+				entries_count 4
 			end
 
 			after(:create) do |timesheet, evaluator|

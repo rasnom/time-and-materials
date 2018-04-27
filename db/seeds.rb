@@ -9,12 +9,13 @@ WorkEntry.delete_all
 Timesheet.delete_all
 Employee.delete_all
 PayPeriod.delete_all
-
+Project.delete_all
 
 acody = Employee.create(full_name: "Angstrom Cody")
 bbrody = Employee.create(full_name: "Bob Brody")
 sometime = PayPeriod.create(end_date: "February 6, 1999")
 stuff = Project.create(name: "stuff")
+things = Project.create(name: "things")
 blank_sheet = Timesheet.create(employee: acody, pay_period: sometime)
 full_sheet = Timesheet.create(employee: bbrody, pay_period: sometime)
 

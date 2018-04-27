@@ -9,7 +9,7 @@
 	
 	<%= form.fields_for :work_entries do |work_entry_fields| %>
 		<p class="work_entry_fields">
-			Project: <%= work_entry_fields.text_field :project %>
+			Project: <%= work_entry_fields.collection_select(:project_id, Project.all, :id, :name) %>
 			Start Time: <%= work_entry_fields.text_field :start_time %>
 			End Time: <%= work_entry_fields.text_field :end_time %>
 		</p>

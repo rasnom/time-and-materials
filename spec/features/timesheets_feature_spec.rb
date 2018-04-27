@@ -61,12 +61,20 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			end
 
 			it 'includes the related work entry fields in the form' do
-				expect(page).to have_css "input#timesheet_work_entries_attributes_0_project"
 				expect(page).to have_css "input#timesheet_work_entries_attributes_0_start_time"
 				expect(page).to have_css "input#timesheet_work_entries_attributes_0_end_time"
 			end
 
-			xit 'prepopulates the timesheet work entry fields with existing data' do
+			describe 'project selection' do
+				it 'uses a dropdown' do
+					expect(page).to have_css "select#timesheet_work_entries_attributes_0_project_id"
+				end
+
+				it 'uses the project names as the dropdown labels' do
+					name = timesheet.work_entries[0].project.name
+					specific_work_entry_area = page.find("select#timesheet_work_entries_attributes_0_project_id")
+					expect(specific_work_entry_area).to have_selected name
+				end
 			end
 		end
 	end
