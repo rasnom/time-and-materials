@@ -48,6 +48,7 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 
 	describe 'edit' do
 		let!(:timesheet) { FactoryBot.create(:timesheet_with_entries) }
+		let!(:other_project) { FactoryBot.create(:project, name: "other project") }
 		before(:each) { visit "/timesheets/#{timesheet.id}/edit" }
 
 		it 'displays the immutable timesheet details' do
@@ -66,14 +67,16 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 			end
 
 			describe 'project selection' do
-				it 'uses a dropdown' do
-					expect(page).to have_css "select#timesheet_work_entries_attributes_0_project_id"
-				end
+				let(:name) { timesheet.work_entries[0].project.name }
+				let(:project_dropdown) { page.find("select#timesheet_work_entries_attributes_0_project_id") }
 
 				it 'uses the project names as the dropdown labels' do
-					name = timesheet.work_entries[0].project.name
-					specific_work_entry_area = page.find("select#timesheet_work_entries_attributes_0_project_id")
-					expect(specific_work_entry_area).to have_selected name
+					expect(project_dropdown.text).to include name
+					expect(project_dropdown.text).to include other_project.name
+				end
+
+				it 'has the associate project pre-selected' do
+					expect(Project.find(project_dropdown.value).name).to eq name
 				end
 			end
 		end
