@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe TimesheetsController, type: :controller do
+	let!(:timesheet_list) { FactoryBot.create_list(:timesheet, 6) }
+	let!(:timesheet) { timesheet_list[0] }
 
 	describe 'GET index' do
 		it 'renders the timesheets index' do
@@ -9,14 +11,12 @@ RSpec.describe TimesheetsController, type: :controller do
 		end
 
 		it 'assigns @timesheets' do
-			timesheet_list = FactoryBot.create_list(:timesheet, 6)
 			get :index
 			expect(assigns(:timesheets)).to eq timesheet_list
 		end
 	end
 
 	describe 'GET show' do
-		let!(:timesheet) { FactoryBot.create(:timesheet) }
 		before(:each) { get :show, params: { id: timesheet.id } }
 	
 		it 'renders the timesheets show view' do
@@ -29,8 +29,7 @@ RSpec.describe TimesheetsController, type: :controller do
 	end
 
 	describe 'GET edit' do
-		let!(:timesheet) { FactoryBot.create(:timesheet) }
-		before(:each) { get :edit, params: { id: timesheet.id} }
+		before(:each) { get :edit, params: { id: timesheet.id } }
 
 		it 'renders the timesheets edit view' do
 			expect(response).to render_template('edit')
@@ -38,6 +37,14 @@ RSpec.describe TimesheetsController, type: :controller do
 
 		it 'assigns @timesheet' do
 			expect(assigns(:timesheet)).to eq timesheet
+		end
+	end
+
+	describe 'PUT update' do
+		it 'updates a timesheet with valid params' do
+			new_employee = FactoryBot.create(:employee)
+			put :update, params: { id: timesheet.id, employee_id: new_employee.id }
+			expect(Timesheet.find(timesheet.id).employee_id).to eq new_employee.id 
 		end
 	end
 end

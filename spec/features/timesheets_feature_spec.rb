@@ -80,5 +80,29 @@ RSpec.describe 'Timesheets', type: :feature, js: true do
 				end
 			end
 		end
+
+		describe 'submitting' do			
+			# decribe 'if some of the form data is invalid' do
+			# 	it 'displays an error if '
+
+			# end
+
+			# it 'redirects you to the timesheet view' do
+			# 	click_button('Update Timesheet')
+			# 	expect(current_path).to eq "/timesheets/#{timesheet.id}"
+			# end
+
+			# describe 'if you make no changes to the form data' do
+			# 	let!(:original_page) { page }
+			# 	before(:each) { page.click('Submit') }
+
+			# 	it 'makes no changes to the Timesheet' do
+			# 	end
+
+			# 	it 'makes not changes to work entries' do
+			# 	end
+			# end
+
+		end
 	end
 end
