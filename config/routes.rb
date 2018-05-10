@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
+  resources :pay_periods, only: [:index]
+
   resources :timesheets, only: [:index, :show, :edit, :update]
 
 end

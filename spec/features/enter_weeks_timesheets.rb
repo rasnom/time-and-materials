@@ -9,7 +9,7 @@ RSpec.describe 'Enter timesheets for a week', type: :feature, js: true do
 		]
 	end
 
-	it 'Displays a list of the most recent periods on the home page' do
+	xit 'Displays a list of the most recent periods on the home page' do
 		visit '/'
 		expect(page).to have_content (recent_periods[0].end_date.to_s)
 		expect(page).to have_content (recent_periods[1].end_date.to_s)
