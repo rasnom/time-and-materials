@@ -10,6 +10,7 @@ RSpec.describe PayPeriod, type: :model do
 			dateless = FactoryBot.build(:pay_period, end_date: nil)
 			expect(dateless.valid?).to be false
 		end
+
 	end
 
 	describe 'Associations' do
