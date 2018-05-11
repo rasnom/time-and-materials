@@ -4,7 +4,7 @@ RSpec.describe 'PayPeriods', type: :feature, js: true do
 
 	describe 'Index' do
 		let!(:recent_periods) do
-			recent_periods = [
+			[
 				FactoryBot.create(:pay_period, end_date: "2018-05-15"),
 				FactoryBot.create(:pay_period, end_date: "2018-01-01"),
 				FactoryBot.create(:pay_period, end_date: "2018-03-22")
