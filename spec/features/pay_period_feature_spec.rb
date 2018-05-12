@@ -11,11 +11,19 @@ RSpec.describe 'PayPeriods', type: :feature, js: true do
 			]
 		end
 
-		it 'displays a list of the pay periods' do
-			visit '/pay_periods'
-			expect(page).to have_content (recent_periods[0].end_date.to_s)
-			expect(page).to have_content (recent_periods[1].end_date.to_s)
+		describe 'PayPeriod list' do
+			before(:each) { visit '/pay_periods' }
+
+			it 'displays a list of the pay periods' do
+				expect(page).to have_content (recent_periods[0].end_date.to_s)
+				expect(page).to have_content (recent_periods[1].end_date.to_s)
+			end
+
+			# it 'links to the individual show pages for the periods' do 
+			# 	some_period = recent_periods.last
+			# 	click_link(some_period.end_date.to_s)
+			# 	expect(page).to have_current_path(pay_periods_path(some_period))
+			# end
 		end
 	end
-
 end

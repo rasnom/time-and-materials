@@ -9,10 +9,20 @@ RSpec.describe 'Enter timesheets for a week', type: :feature, js: true do
 		]
 	end
 
-	it 'Displays a list of the most recent periods on the home page' do
-		visit '/'
-		expect(page).to have_content (recent_periods[0].end_date.to_s)
-		expect(page).to have_content (recent_periods[1].end_date.to_s)
-	end
+	describe 'Navigating to the week in question' do
+		describe 'The home page' do
+			before(:each) { visit '/' }
 
+			it 'displays a list of the most recent periods on the home page' do
+				expect(page).to have_content (recent_periods[0].end_date.to_s)
+				expect(page).to have_content (recent_periods[1].end_date.to_s)
+			end
+
+			it 'takes you to the details page of a pay period if you click it' do
+				some_period = recent_periods[2]
+				click_link(some_period.end_date.to_s)
+				expect(page).to have_current_path(pay_periods_path(some_period))
+			end
+		end
+	end
 end

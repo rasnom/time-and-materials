@@ -3,7 +3,9 @@
 <ul class="pay_period_list">
 	<% @pay_periods.each do |period| %>
 		<li>
-			<%= period.end_date.to_s %>
+			<a href="<%= pay_periods_path(period) %>">
+				<%= period.end_date.to_s %>
+			</a>
 		</li>
 	<% end %>
 </ul>
