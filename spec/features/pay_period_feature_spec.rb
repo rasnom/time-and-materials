@@ -19,11 +19,20 @@ RSpec.describe 'PayPeriods', type: :feature, js: true do
 				expect(page).to have_content (recent_periods[1].end_date.to_s)
 			end
 
-			# it 'links to the individual show pages for the periods' do 
-			# 	some_period = recent_periods.last
-			# 	click_link(some_period.end_date.to_s)
-			# 	expect(page).to have_current_path(pay_periods_path(some_period))
-			# end
+			it 'links to the individual show pages for the periods' do 
+				some_period = recent_periods.last
+				click_link(some_period.end_date.to_s)
+				expect(page).to have_current_path(pay_periods_path(some_period))
+			end
 		end
 	end
+
+	describe 'Show' do
+		describe 'Timesheet list' do
+			it 'displays a list of the timesheets for the pay period' do
+				
+			end
+		end
+	end
+
 end
