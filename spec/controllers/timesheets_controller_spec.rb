@@ -12,7 +12,7 @@ RSpec.describe TimesheetsController, type: :controller do
 
 		it 'assigns @timesheets' do
 			get :index
-			expect(assigns(:timesheets)).to eq timesheet_list
+			expect(assigns(:timesheets)).to eq Timesheet.all
 		end
 	end
 

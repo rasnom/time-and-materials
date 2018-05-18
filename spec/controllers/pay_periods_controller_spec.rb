@@ -15,4 +15,23 @@ RSpec.describe PayPeriodsController, type: :controller do
 		end
 	end
 
+	describe 'GET show' do 
+		let!(:period) { pay_period_list[1] }
+		before(:each) { visit "/pay_periods/#{period.id}" }
+
+		before(:each) { get :show, params: { id: period.id } }
+
+		it 'renders the pay periods show view' do
+			expect(page).to render_template('show')
+		end
+
+		it 'assigns @period' do
+			expect(assigns(:period)).to eq period
+		end
+
+		it 'assigns @timesheets' do 
+			expect(assigns(:timesheets)).to eq period.timesheets
+		end
+	end
+
 end
