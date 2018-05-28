@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :controller do
 
 	describe 'show' do
+		before(:each) { FactoryBot.create(:employee) }
 		let!(:pay_period_list) { FactoryBot.create_list(:pay_period, 4) }
 		before(:each) { get :show }
 

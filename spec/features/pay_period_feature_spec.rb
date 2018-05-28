@@ -33,12 +33,17 @@ RSpec.describe 'PayPeriods', type: :feature, js: true do
 		describe 'Timesheet list' do
 			let!(:period) { recent_periods[2] }
 			
-			xit 'lists the timesheets for the period' do
+			it 'lists the timesheets for the period' do
 				period.timesheets.each do |timesheet|
 					expect(page).to have_css ("#timesheet-#{timesheet.id}")
 				end
 			end
 
+			it 'displays the name of the employee for each timesheet' do
+				some_timesheet = period.timesheets[1]
+				some_name = some_timesheet.employee.full_name
+				expect(page.find("#timesheet-#{some_timesheet.id}").text).to include some_name
+			end
 		end
 	end
 

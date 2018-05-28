@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Timesheet, type: :model do
+	before(:each) { FactoryBot.create(:employee) }
   
 	describe 'Creation' do
 		it 'is valid with a P_period and employee' do

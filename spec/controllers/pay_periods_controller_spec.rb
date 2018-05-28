@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PayPeriodsController, type: :controller do
+	before(:each) { FactoryBot.create(:employee) }
 	let!(:pay_period_list) { FactoryBot.create_list(:pay_period, 5) }
 
 	describe 'GET index' do

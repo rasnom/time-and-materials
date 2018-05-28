@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Enter timesheets for a week', type: :feature, js: true do
+	before(:each) { FactoryBot.create(:employee) }
 	let!(:recent_periods) do
 		recent_periods = [
 			FactoryBot.create(:pay_period, end_date: "2018-05-15"),
@@ -32,6 +33,8 @@ RSpec.describe 'Enter timesheets for a week', type: :feature, js: true do
 			before(:each) { visit "/pay_periods/#{period.id}" }
 
 			xit 'lists the timesheets for the period' do
+				p period
+				p timesheet
 				expect(page).to have_css ("#timesheet-#{timesheet.id}")	
 			end
 

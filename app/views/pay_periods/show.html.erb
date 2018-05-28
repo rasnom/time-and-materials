@@ -1,1 +1,7 @@
-pay period show page
+<ul class="timesheets_list">
+	<% @timesheets.each do |timesheet| %>
+		<li id='<%= "timesheet-#{timesheet.id}" %>'>
+			<%= timesheet.employee.full_name %>
+		</li>
+	<% end %>
+</ul>
