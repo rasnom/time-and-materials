@@ -13,7 +13,6 @@ class TimesheetsController < ApplicationController
 	end
 
 	def update
-		p params
 		timesheet = Timesheet.find(params[:id])
 		timesheet.update(employee_id: timesheet_params[:employee_id])
 	end

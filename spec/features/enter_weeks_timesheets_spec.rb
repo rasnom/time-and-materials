@@ -12,7 +12,7 @@ RSpec.describe 'Enter timesheets for a week', type: :feature, js: true do
 
 	describe 'Navigating to a timesheet' do
 		let!(:period) { recent_periods[0] }
-		let!(:timesheet) { period.timesheets[1] }
+		let!(:timesheet) { period.timesheets.first }
 
 		context 'The home page' do
 			before(:each) { visit '/' }
@@ -32,14 +32,13 @@ RSpec.describe 'Enter timesheets for a week', type: :feature, js: true do
 		context 'The PayPeriod show page' do
 			before(:each) { visit "/pay_periods/#{period.id}" }
 
-			xit 'lists the timesheets for the period' do
-				p period
-				p timesheet
+			it 'lists the timesheets for the period' do
 				expect(page).to have_css ("#timesheet-#{timesheet.id}")	
 			end
 
-			xit 'links to the show pages for the timesheet' do 
-
+			it 'links to the show pages for the timesheet' do 
+				click_link(timesheet.employee.full_name)
+				expect(page).to have_current_path(timesheet_path(timesheet))
 			end
 		end
 	end
