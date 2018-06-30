@@ -1,0 +1,28 @@
+<h1> Timesheet Details </h1>
+
+
+<div class='timesheet-body' >
+
+	<div class='header'>
+		<div>
+			Employee: <%= @timesheet.employee.full_name %>
+		</div>
+		<div>
+			Pay Period: <%= @timesheet.pay_period.end_date %>
+		</div>
+		<div>
+			Total hours: <%= @timesheet.total_hours %>
+		</div>
+	<div>
+
+	<div class='work_entries_are'a>
+		<% @timesheet.work_entries.each do |work_entry| %>
+			<div class='work_entry' id='work_entry-<%= work_entry.id %>'>
+				Project: <%= work_entry.project.name %>
+				Start: <%= work_entry.start_time.to_s %>
+				End: <%= work_entry.end_time.to_s %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
