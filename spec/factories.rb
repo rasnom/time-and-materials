@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :project do
-  	name "44 Ramble Rd"  
+  	name "44 Ramble Rd"
   end
 
   factory :work_entry do
@@ -8,16 +8,16 @@ FactoryBot.define do
   	start_time 'May 3, 1999'
   	end_time 'May 1, 1977'
 
-  	timesheet  
-  	project Project.first_or_create(name: "99 Markov")
+  	timesheet
+  	project
   end
 
   factory :pay_period do
- 		end_date '2018-01-14'   
+ 		end_date '2018-01-14'
   end
- 
+
   factory :employee do
-  	full_name 'Little John'	  
+  	full_name 'Little John'
   end
 
 	factory(:timesheet) do
