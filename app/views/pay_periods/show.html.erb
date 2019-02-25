@@ -1,8 +1,0 @@
-<ul class="timesheets_list">
-	<% @timesheets.each do |timesheet| %>
-		<li id='<%= "timesheet-#{timesheet.id}" %>'>
-			<%= link_to(timesheet.employee.full_name, timesheet_path(timesheet)) %>
-			<%= timesheet.employee.full_name %>
-		</li>
-	<% end %>
-</ul>
